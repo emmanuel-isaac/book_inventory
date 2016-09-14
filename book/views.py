@@ -25,8 +25,8 @@ class HomePageView(View):
 
     @staticmethod
     def get_category_matches(model, search_term):
-        return getattr(model, 'objects').filter(category__name__contains=search_term)
+        return getattr(model, 'objects').filter(category__name__icontains=search_term)
 
     @staticmethod
     def get_book_title_matches(model, search_term):
-        return getattr(model, 'objects').filter(title__contains=search_term)
+        return getattr(model, 'objects').filter(title__icontains=search_term)
