@@ -74,6 +74,14 @@ class HomePageTestCase(TestCase):
         matches = HomePageView.get_category_matches(Book, 'est')
         self.assertEqual(len(matches), 2)
 
+    def test_category_search_is_case_insensitive(self):
+        matches = HomePageView.get_category_matches(Book, 'Test')
+        self.assertEqual(len(matches), 2)
+
     def test_book_title_match_is_found(self):
         matches = HomePageView.get_book_title_matches(Book, 'tho')
+        self.assertEqual(len(matches), 1)
+
+    def test_book_title_search_is_case_insensitive(self):
+        matches = HomePageView.get_book_title_matches(Book, 'es6')
         self.assertEqual(len(matches), 1)
