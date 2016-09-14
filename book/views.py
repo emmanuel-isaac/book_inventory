@@ -20,8 +20,9 @@ class HomePageView(View):
             category_matches = list(self.get_category_matches(Book, search_term))
             book_title_matches = list(self.get_book_title_matches(Book, search_term))
             all_matches = list(set(category_matches + book_title_matches))
-        return render(request, 'index.html',
-                      {'matches': all_matches, 'books': self.books, 'search_form': self.search_form})
+            return render(request, 'index.html',
+                          {'matches': all_matches, 'books': self.books, 'search_form': self.search_form})
+        return render(request, 'index.html', {'books': self.books, 'search_form': self.search_form})
 
     @staticmethod
     def get_category_matches(model, search_term):
