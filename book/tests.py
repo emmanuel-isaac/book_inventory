@@ -1,4 +1,5 @@
-from django.test import TestCase
+from django.test import TestCase, Client
+from django.core.urlresolvers import reverse
 
 from .models import Book, Category
 
@@ -46,3 +47,15 @@ class BookTestCase(TestCase):
 
     def test_string_representation(self):
         self.assertEqual(str(self.book), 'Python by James')
+
+
+class HomePageTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def tearDown(self):
+        del self.client
+
+    def test_home_page_response(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
