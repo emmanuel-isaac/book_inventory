@@ -52,10 +52,25 @@ class BookTestCase(TestCase):
 class HomePageTestCase(TestCase):
     def setUp(self):
         self.client = Client()
+        self.category = Category.objects.create(name="test")
+        self.book1 = Book.objects.create(title="Python", author="James", category=self.category)
+        self.book2 = Book.objects.create(title="ES6", author="No name", category=self.category)
 
     def tearDown(self):
         del self
 
-    def test_home_page_response(self):
+    def test_home_page_get_response(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
+
+    def test_home_page_post_response(self):
+        response = self.client.post(reverse('home'), data=dict(search_term='phone'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_category_matches_are_found(self):
+        matches = HomePageView.get_category_matches(Book, 'est')
+        self.assertEqual(len(matches), 2)
+
+    def test_book_title_match_is_found(self):
+        matches = HomePageView.get_book_title_matches(Book, 'tho')
+        self.assertEqual(len(matches), 1)
