@@ -5,10 +5,10 @@
 </head>
 <body>
 {% if matches %}
-  <h2>Results:</h2>
+  <h2>{{ matches|length }} Result(s):</h2>
   {% for match in matches %}
     <div>
-      {{ match }}
+      {{ match }}, Category: {{ match.category }}
     </div>
   {% endfor %}
 {% endif %}
@@ -19,7 +19,7 @@
   <button type="submit">Submit</button>
 </form>
   {% for book in books %}
-    <p>{{ book }}</p>
+    <p>{{ book }}, Category: {{ book.category }}</p>
   {% endfor %}
 </body>
 </html>
