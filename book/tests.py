@@ -26,6 +26,9 @@ class CategoryTestCase(TestCase):
     def test_category_instance(self):
         self.assertIsInstance(self.category, Category)
 
+    def test_string_representation(self):
+        self.assertEqual(str(self.category.name), 'test')
+
 
 class BookTestCase(TestCase):
     def setUp(self):
