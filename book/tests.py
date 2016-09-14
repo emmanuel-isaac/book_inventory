@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.core.urlresolvers import reverse
 
 from .models import Book, Category
+from .views import HomePageView
 
 
 class RandomTestCase(TestCase):
@@ -17,10 +18,10 @@ class RandomTestCase(TestCase):
 
 class CategoryTestCase(TestCase):
     def setUp(self):
-        self.category = Category.objects.create(name="test",)
+        self.category = Category.objects.create(name="test")
 
     def tearDown(self):
-        del self.category
+        del self
 
     def test_category_instance(self):
         self.assertIsInstance(self.category, Category)
@@ -32,8 +33,7 @@ class BookTestCase(TestCase):
         self.book = Book.objects.create(title="Python", author="James", category=self.category)
 
     def tearDown(self):
-        del self.category
-        del self.book
+        del self
 
     def test_book_instance(self):
         self.assertIsInstance(self.book, Book)
@@ -54,7 +54,7 @@ class HomePageTestCase(TestCase):
         self.client = Client()
 
     def tearDown(self):
-        del self.client
+        del self
 
     def test_home_page_response(self):
         response = self.client.get(reverse('home'))
