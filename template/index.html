@@ -4,6 +4,20 @@
   <title>Book Inventory</title>
 </head>
 <body>
+{% if matches %}
+  <h2>Results:</h2>
+  {% for match in matches %}
+    <div>
+      {{ match }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+<form action="{% url 'home' %}" method="post">
+  {% csrf_token %}
+  {{ search_form.as_p }}
+  <button type="submit">Submit</button>
+</form>
   {% for book in books %}
     <p>{{ book }}</p>
   {% endfor %}
