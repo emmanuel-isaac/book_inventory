@@ -17,7 +17,6 @@ import envvars
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ SECRET_KEY = 'jqt_##b0grdg6h7m02!@88jsv3oeyj6uvb2ps7d$d8m5qdae14'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
